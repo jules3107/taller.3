@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller - 3</title>
+    <link rel="stylesheet" href="../taller3/css/taller.css">
+    <script src="../taller3/js/java.js"></script>
+</head>
+<body>
+<div class="caja">
+        <h1>Portal universidad</h1>
+
+        <div style="text-align: center;">
+            <button class="boton" onclick="irA('inicio')">Pestaña 1</button>
+            <button class="boton" onclick="irA('programas')">Pestaña 2</button>
+            <button class="boton" onclick="irA('proyectos')">Pestaña 3</button>
+        </div>
+
+        <div id="inicio" class="pagina mostrar">
+            <h2>Bienvenido!</h2>
+            <p>Aquí puedes ver:</p>
+            <ul>
+                <li><strong>Proyectos y programas</strong></li>
+                
+            </ul>
+        </div>
+
+        <div id="programas" class="pagina">
+            <h2>Control de Programas Académicos</h2>
+
+            <div class="formulario">
+                <h3>Crear Nuevo Programa</h3>
+                <form onsubmit="crearPrograma(event)">
+
+                    <label>ID del Programa:</label>
+                    <input type="text" id="codigoCarrera" placeholder="Ejemplo: PROG001" required>
+                    <span class="error" id="errorCodigoCarrera"></span>
+
+                    <label>¿Cuántos semestres tiene?</label>
+                    <input type="number" id="semestres" min="1" placeholder="Ejemplo: 8" required>
+
+                    <label>Título del Programa:</label>
+                    <input type="text" id="nombreCarrera" placeholder="Ejemplo: Contaduría Pública" required>
+                    <span class="error" id="errorNombreCarrera"></span>
+
+                    <label>Tipo de Modalidad:</label>
+                    <select id="comoEstudia" required>
+                        <option value="">-- Escoge una opción --</option>
+                        <option value="Presencial">Presencial (asistir a campus)</option>
+                        <option value="Virtual">Virtual (estudiar en casa)</option>
+                    </select>
+
+                    <button type="submit" class="boton-guardar">Crear Programa</button>
+                    <button type="button" class="boton-limpiar" onclick="borrarFormularioPrograma()">Resetear</button>
+                </form>
+            </div>
+
+            <div id="mostrarProgramas"></div>
+        </div>
+
+        <div id="proyectos" class="pagina">
+            <h2>Manejo de Proyectos de Grado</h2>
+
+            <div class="formulario">
+                <h3>Incluir Proyecto Nuevo</h3>
+                <form onsubmit="crearProyecto(event)">
+
+                    <label>ID del Proyecto:</label>
+                    <input type="text" id="codigo" placeholder="Ejemplo: PY001" required>
+                    <span class="error" id="errorCodigo"></span>
+
+                    <label>¿A qué área pertenece?</label>
+                    <select id="area" required>
+                        <option value="">Escoge una área</option>
+                        <option value="Tecnologia">Informática</option>
+                        <option value="Salud">Medicina</option>
+                        <option value="Educacion">Enseñanza</option>
+                        <option value="MedioAmbiente">Ecología</option>
+                        <option value="Negocios">Comercio</option>
+                    </select>
+
+                    <label>Nombre del Proyecto:</label>
+                    <input type="text" id="titulo" placeholder="Ejemplo: Plataforma de Ventas Online" required>
+                    <span class="error" id="errorTitulo"></span>
+
+                    <label>¿Cuál es el estado?</label>
+                    <select id="estado" required>
+                        <option value="">Escoge el estado</option>
+                        <option value="EnDesarrollo">Aún desarrollando</option>
+                        <option value="EnRevision">En revisión</option>
+                        <option value="Finalizado">Terminado</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+
+                    <button type="submit" class="boton-guardar">Iniciar Proyecto</button>
+                    <button type="button" class="boton-limpiar" onclick="borrarFormularioProyecto()">Resetear</button>
+                </form>
+            </div>
+
+            <div id="mostrarProyectos"></div>
+        </div>
+    </div>
+</body>
+</html>

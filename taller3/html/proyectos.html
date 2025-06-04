@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller - 3</title>
+    <link rel="stylesheet" href="../css/taller.css">
+    <script src="../js/java.js"></script>
+</head>
+<body>
+<div class="caja">
+    <header class="encabezado">
+        <h1>Sistema Universitario de Gestión</h1>
+        <nav class="navegacion">
+            <button class="boton nav-activo" onclick="irA('principal')" id="btn-inicio">
+                 Dashboard
+            </button>
+            <button class="boton" onclick="irA('carreras')" id="btn-carreras">
+                 Programas
+            </button>
+            <button class="boton" onclick="irA('trabajos')" id="btn-trabajos">
+                 Proyectos
+            </button>
+        </nav>
+    </header>
+
+    <main class="contenido-principal">
+        <section id="principal" class="pagina mostrar">
+            <div class="tarjeta-bienvenida">
+                <h2>Panel Principal</h2>
+                <p class="descripcion">Sistema integral para la gestión académica universitaria</p>
+                
+                <div class="grid-modulos">
+                    <div class="modulo-card">
+                        <div class="icono-modulo"></div>
+                        <h3>Proyectos de Grado</h3>
+                        <p>Gestiona y supervisa todos los trabajos de investigación y tesis de grado</p>
+                        <button class="enlace-modulo" onclick="irA('trabajos')">Acceder →</button>
+                    </div>
+                    
+                    <div class="modulo-card">
+                        <div class="icono-modulo"></div>
+                        <h3>Programas Académicos</h3>
+                        <p>Administra las carreras universitarias y sus especificaciones</p>
+                        <button class="enlace-modulo" onclick="irA('carreras')">Acceder →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="carreras" class="pagina">
+            <div class="seccion-header">
+                <h2>Gestión de Programas Académicos</h2>
+                <p>Administra y configura los programas educativos de la institución</p>
+            </div>
+            
+            <div class="contenedor-formulario">
+                <div class="formulario-header">
+                    <h3>Registro de Nuevo Programa</h3>
+                </div>
+                
+                <form onsubmit="crearPrograma(event)" class="formulario-moderno">
+                    <div class="fila-campos">
+                        <div class="campo-grupo">
+                            <label for="codigoCarrera">Código del Programa</label>
+                            <input type="text" id="codigoCarrera" placeholder="Ej: PROG-001" required>
+                            <span class="error" id="errorCodigoCarrera"></span>
+                        </div>
+                        
+                        <div class="campo-grupo">
+                            <label for="semestres">Duración (Períodos)</label>
+                            <input type="number" id="semestres" min="1" max="20" placeholder="8" required>
+                        </div>
+                    </div>
+                    
+                    <div class="campo-grupo">
+                        <label for="nombreCarrera">Denominación del Programa</label>
+                        <input type="text" id="nombreCarrera" placeholder="Ingeniería de Sistemas" required>
+                        <span class="error" id="errorNombreCarrera"></span>
+                    </div>
+                    
+                    <div class="campo-grupo">
+                        <label for="comoEstudia">Modalidad de Enseñanza</label>
+                        <select id="comoEstudia" required>
+                            <option value="">Seleccionar modalidad</option>
+                            <option value="Presencial">Modalidad Presencial</option>
+                            <option value="Virtual">Modalidad Virtual</option>
+                            <option value="Mixta">Modalidad Híbrida</option>
+                        </select>
+                    </div>
+                    
+                    <div class="acciones-formulario">
+                        <button type="submit" class="boton-guardar">
+                             Guardar Programa
+                        </button>
+                        <button type="button" class="boton-limpiar" onclick="borrarFormularioPrograma()">
+                             Limpiar Campos
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="contenedor-listado">
+                <h3>Programas Registrados</h3>
+                <div id="mostrarProgramas"></div>
+            </div>
+        </section>
+
+        <section id="trabajos" class="pagina">
+            <div class="seccion-header">
+                <h2>Control de Proyectos de Grado</h2>
+                <p>Supervisa y gestiona los trabajos de investigación estudiantil</p>
+            </div>
+            
+            <div class="contenedor-formulario">
+                <div class="formulario-header">
+                    <h3>Registro de Proyecto</h3>
+                </div>
+                
+                <form onsubmit="crearProyecto(event)" class="formulario-moderno">
+                    <div class="fila-campos">
+                        <div class="campo-grupo">
+                            <label for="codigo">Código de Proyecto</label>
+                            <input type="text" id="codigo" placeholder="Ej: PROY-001" required>
+                            <span class="error" id="errorCodigo"></span>
+                        </div>
+                        
+                        <div class="campo-grupo">
+                            <label for="area">Área de Conocimiento</label>
+                            <select id="area" required>
+                                <option value="">Seleccionar área</option>
+                                <option value="Tecnologia">Ingeniería y Tecnología</option>
+                                <option value="Salud">Ciencias de la Salud</option>
+                                <option value="Educacion">Ciencias de la Educación</option>
+                                <option value="MedioAmbiente">Ciencias Ambientales</option>
+                                <option value="Negocios">Ciencias Económicas</option>
+                                <option value="Sociales">Ciencias Sociales</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="campo-grupo">
+                        <label for="titulo">Título del Proyecto</label>
+                        <input type="text" id="titulo" placeholder="Sistema de Gestión Académica" required>
+                        <span class="error" id="errorTitulo"></span>
+                    </div>
+                    
+                    <div class="campo-grupo">
+                        <label for="estado">Estado del Proyecto</label>
+                        <select id="estado" required>
+                            <option value="">Seleccionar estado</option>
+                            <option value="EnDesarrollo"> En Desarrollo</option>
+                            <option value="EnRevision"> En Revisión</option>
+                            <option value="Finalizado"> Finalizado</option>
+                            <option value="Cancelado"> Cancelado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="acciones-formulario">
+                        <button type="submit" class="boton-guardar">
+                             Registrar Proyecto
+                        </button>
+                        <button type="button" class="boton-limpiar" onclick="borrarFormularioProyecto()">
+                             Limpiar Campos
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="contenedor-listado">
+                <h3>Proyectos Registrados</h3>
+                <div id="mostrarProyectos"></div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
